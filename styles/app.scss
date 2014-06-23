@@ -1,0 +1,23 @@
+/* Put your CSS here */
+
+@import 'compass/reset';
+
+html, body {
+    margin: 20px;
+}
+
+@keyframes domChanged { from { background: yellow; } }
+@-webkit-keyframes domChanged { from { background: yellow; } }
+.ember-view { animation: domChanged 1s; -webkit-animation: domChanged 1s; }
+
+
+.container {
+	margin:0 auto;
+	max-width:960px;
+}
+
+.bill {
+	background:url('/images/400.jpeg') center center no-repeat;
+	width:400px;
+	height:400px;
+}
