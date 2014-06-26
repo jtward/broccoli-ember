@@ -78,3 +78,5 @@ local.properties
 .texlipse
 
 # Cordova build artifacts
+
+www
