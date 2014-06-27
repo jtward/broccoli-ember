@@ -1,4 +1,4 @@
-Ember Broccoli
+Broccoli Ember
 ==============
 Sample broccoli ember app, with compass compilation, qunit & autoreloading.
 Still a work in progress!
