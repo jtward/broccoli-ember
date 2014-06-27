@@ -45,6 +45,7 @@ app = pickFiles(app, {
   destDir: appNamespace // move under app namespace
 })
 
+//run jshint on the app files
 var jshintedApp = jshintTree(app, {
   jshintrcPath: '.',
   description: 'jsHint - App'
@@ -102,6 +103,7 @@ if(env !== 'production'){
     destDir: '/tests'
   })
 
+  //munge all the jshint test files into one
   var jshintTests = concatFiles(jshintedApp, {
     inputFiles: ['**/*.js'],
     outputFile: '/tests/jshints.js',
@@ -112,6 +114,6 @@ if(env !== 'production'){
   filesToExport.push(jshintTests)
 }
 
-console.log(env) 
+console.log(env)
 
 module.exports = mergeTrees(filesToExport)
