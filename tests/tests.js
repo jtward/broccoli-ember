@@ -62,3 +62,7 @@ module("About module", {
 test('Look for another bill', function(){
   equal(find('#another-bill').length, 1, 'found bill again');
 });
+
+test('This test fails', function(){
+  equal(find('#no-bill').length, 1, 'found bill again');
+});

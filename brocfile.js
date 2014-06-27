@@ -17,11 +17,16 @@ var appFilesToAppend = [
 var vendorFilesToAppend = [
   'jQuery/dist/jquery.min.js',
   'handlebars/handlebars.min.js',
-  'ember/ember.js'
 ]
 
+if(env === 'production'){
+  vendorFilesToAppend.push('ember/ember.prod.js');
+} else {
+  vendorFilesToAppend.push('ember/ember.js');
+}
+
 //process handlebars templates for a given tree
-function preprocess (tree) {
+function preprocessTemplates (tree) {
   tree = filterTemplates(tree, {
     extensions: ['hbs', 'handlebars'],
     compileFunction: 'Ember.Handlebars.compile'
@@ -35,18 +40,12 @@ app = pickFiles(app, {
   srcDir: '/',
   destDir: appNamespace // move under app namespace
 })
-app = preprocess(app)
+app = preprocessTemplates(app)
 
 var styles = 'styles'
 styles = pickFiles(styles, {
   srcDir: '/',
   destDir: appNamespace + '/styles'
-})
-
-var testFiles = 'tests'
-testFiles = pickFiles(testFiles, {
-  srcDir: '/',
-  destDir: '/tests'
 })
 
 var vendor = 'vendor'
@@ -83,5 +82,17 @@ var appCss = compileSass(appAndDependencies, appNamespace + '/styles/app.scss', 
 })
 
 var publicFiles = 'public'
+var filesToExport = [applicationJs, appCss, publicFiles, vendorFiles]
 
-module.exports = mergeTrees([applicationJs, appCss, publicFiles, vendorFiles, testFiles])
+//add the test files if we're not in production
+if(env !== 'production'){
+  var testFiles = 'tests'
+  testFiles = pickFiles(testFiles, {
+    srcDir: '/',
+    destDir: '/tests'
+  })
+
+  filesToExport.push(testFiles)
+}
+
+module.exports = mergeTrees(filesToExport)
