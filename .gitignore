@@ -1,6 +1,7 @@
 # js build & temp
 node_modules
 bower_components
+vendor
 *.tmp
 tmp
 .sass_cache
