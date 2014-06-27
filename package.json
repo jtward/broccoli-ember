@@ -24,6 +24,7 @@
     "grunt-broccoli": "^0.2.2"
   },
   "dependencies": {
-    "broccoli-concat": "0.0.6"
+    "broccoli-concat": "0.0.6",
+    "broccoli-jshint": "^0.5.1"
   }
 }

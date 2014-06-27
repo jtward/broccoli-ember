@@ -4,6 +4,7 @@ var compileSass = require('broccoli-compass')
 var pickFiles = require('broccoli-static-compiler')
 var mergeTrees = require('broccoli-merge-trees')
 var concatFiles = require('broccoli-concat')
+var jshintTree = require('broccoli-jshint');
 var env = require('broccoli-env').getEnv()
 
 //change this for each project!
@@ -14,11 +15,14 @@ var appFilesToAppend = [
   'ember-resolver/dist/ember-resolver.js'    
 ]
 
+//more external dependacies? add them here
 var vendorFilesToAppend = [
   'jQuery/dist/jquery.min.js',
   'handlebars/handlebars.min.js',
 ]
 
+//only the dev version of ember has the test helpers included
+//we don't need them in the production build
 if(env === 'production'){
   vendorFilesToAppend.push('ember/ember.prod.js');
 } else {
@@ -40,6 +44,12 @@ app = pickFiles(app, {
   srcDir: '/',
   destDir: appNamespace // move under app namespace
 })
+
+var jshintedApp = jshintTree(app, {
+  jshintrcPath: '.',
+  description: 'jsHint - App'
+})
+
 app = preprocessTemplates(app)
 
 var styles = 'styles'
@@ -92,7 +102,16 @@ if(env !== 'production'){
     destDir: '/tests'
   })
 
+  var jshintTests = concatFiles(jshintedApp, {
+    inputFiles: ['**/*.js'],
+    outputFile: '/tests/jshints.js',
+    separator: '\n;'
+  });
+
   filesToExport.push(testFiles)
+  filesToExport.push(jshintTests)
 }
+
+console.log(env) 
 
 module.exports = mergeTrees(filesToExport)

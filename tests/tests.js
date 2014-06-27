@@ -64,5 +64,5 @@ test('Look for another bill', function(){
 });
 
 test('This test fails', function(){
-  equal(find('#no-bill').length, 1, 'found bill again');
+  equal(find('#no-bill').length, 1, 'no bill :(');
 });
