@@ -3,7 +3,9 @@
 @import 'compass/reset';
 
 html, body {
-    margin: 20px;
+    background-color: moccasin;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
 }
 
 @keyframes domChanged { from { background: yellow; } }
@@ -12,7 +14,7 @@ html, body {
 
 
 .container {
-	margin:0 auto;
+	margin:30px auto 0 auto;
 	max-width:960px;
 }
 
@@ -20,4 +22,5 @@ html, body {
 	background:url('/images/400.jpeg') center center no-repeat;
 	width:400px;
 	height:400px;
+	margin:20px 0 20px 0;
 }

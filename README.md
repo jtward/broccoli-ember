@@ -23,7 +23,7 @@ app - ember application in Ember App Kit suggested format, using ES6 modules
 public - root html folder
 tmp - temp build file
 styles - sass compass compilable scss files
-vendor - magic loader for ES6 module compilation
+vendor - bower dependancies & magic glue for compiling es6 modules
 
 
 Running
