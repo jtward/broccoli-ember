@@ -26,6 +26,12 @@ bower
 
     npm install -g bower
 
+Setup
+-----
+
+    npm install
+    bower install
+
 
 Structure
 ---------
